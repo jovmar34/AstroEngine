@@ -1,0 +1,9 @@
+[submodule "Astro/vendor/spdlog"]
+	path = Astro/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "Astro/vendor/GLFW"]
+	path = Astro/vendor/GLFW
+	url = https://github.com/TheCherno/glfw
+[submodule "Astro/vendor/imgui"]
+	path = Astro/vendor/imgui
+	url = https://github.com/TheCherno/imgui
