@@ -1,5 +1,7 @@
 #include <Astro.h>
 
+#include <imgui.h>
+
 class ExampleLayer : public Astro::Layer
 {
 public:
@@ -10,12 +12,24 @@ public:
 
 	void OnUpdate() override
 	{
-		//AS_INFO("ExampleLayer::Update");
+		if (Astro::Input::IsKeyPressed(AS_KEY_TAB))
+			AS_INFO("Tab is pressed! (poll)");
+	}
+
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 
 	void OnEvent(Astro::Event& event) override
 	{
-		//AS_TRACE("{0}", event);
+		if (event.GetEventType() == Astro::EventType::KeyPressed)
+		{
+			Astro::KeyPressedEvent& e = (Astro::KeyPressedEvent&)event;
+			AS_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 
@@ -25,7 +39,6 @@ public:
 	Sandbox() 
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Astro::ImGuiLayer());
 	}
 
 	~Sandbox() {

@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Astro/vendor/GLFW/include"
 IncludeDir["Glad"] = "Astro/vendor/Glad/include"
 IncludeDir["ImGui"] = "Astro/vendor/imgui"
+IncludeDir["glm"] = "Astro/vendor/glm"
 
 include "Astro/vendor/GLFW"
 include "Astro/vendor/Glad"
@@ -22,8 +23,10 @@ include "Astro/vendor/ImGui"
 
 project "Astro"
 	location "Astro"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -34,7 +37,15 @@ project "Astro"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
+		"%{prj.name}/vendor/glm/glm/**.h"
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 	
 	includedirs
@@ -43,7 +54,8 @@ project "Astro"
 		"%{prj.name}/src",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -55,8 +67,6 @@ project "Astro"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -67,31 +77,28 @@ project "Astro"
 			"IMGUI_IMPL_OPENGL_LOADER_CUSTOM"
 		}
 
-		postbuildcommands
-		{
-			"{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox"
-		}
-
 	filter "configurations:Debug"
 		defines "AS_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "AS_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "AS_DIST"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 		
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -105,7 +112,9 @@ project "Sandbox"
 	includedirs
 	{
 		"Astro/vendor/spdlog/include",
-		"Astro/src"
+		"Astro/src",
+		"Astro/vendor/imgui",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -114,8 +123,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -125,15 +132,16 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "AS_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"		
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "AS_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "AS_DIST"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		symbols "off"
+		optimize "on"

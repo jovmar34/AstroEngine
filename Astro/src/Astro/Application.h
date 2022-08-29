@@ -7,6 +7,12 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
+#include "Astro/ImGui/ImGuiLayer.h"
+
+#include "Astro/Renderer/Shader.h"
+#include "Astro/Renderer/Buffer.h"
+#include "Renderer/VertexArray.h"
+
 namespace Astro {
 
 	class ASTRO_API Application
@@ -29,8 +35,16 @@ namespace Astro {
 		bool OnWindowClosed(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
+
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
+
+		std::shared_ptr<Shader> m_PositionShader;
+		std::shared_ptr<VertexArray> m_SquareVA;
 	private:
 		static Application* s_Instance;
 	};

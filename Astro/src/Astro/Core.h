@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef AS_PLATFORM_WINDOWS
+#if HZ_DYNAMIC_LINK
 	#ifdef AS_BUILD_DLL
 		#define ASTRO_API __declspec(dllexport)
 	#else
 		#define ASTRO_API __declspec(dllimport)
 	#endif
+#else
+	#define ASTRO_API 
+#endif
 #else 
 	#error Only Windows so far
 #endif // !AS_PLATFORM_WINDOWS

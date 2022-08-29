@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Astro/Window.h"
+#include "Astro/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
+
 
 namespace Astro
 {
@@ -21,11 +23,15 @@ namespace Astro
 		virtual void SetVSync(bool enabled) override;
 		virtual bool IsVSync() const override;
 
+		inline virtual void* GetNativeWindow() const override { return m_Window; }
+
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
