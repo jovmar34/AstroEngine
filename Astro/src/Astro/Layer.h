@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Astro/Core.h"
+#include "Astro/Core/Timestep.h"
 #include "Astro/Events/Event.h"
 
 namespace Astro {
@@ -13,7 +14,7 @@ namespace Astro {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

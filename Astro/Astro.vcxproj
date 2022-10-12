@@ -157,15 +157,18 @@
     <ClInclude Include="src\Astro\MouseButtonCodes.h" />
     <ClInclude Include="src\Astro\Renderer\Buffer.h" />
     <ClInclude Include="src\Astro\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Astro\Renderer\Camera.h" />
     <ClInclude Include="src\Astro\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Astro\Renderer\Renderer.h" />
     <ClInclude Include="src\Astro\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Astro\Renderer\Shader.h" />
     <ClInclude Include="src\Astro\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Astro\Core\Timestep.h" />
     <ClInclude Include="src\Astro\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -604,6 +607,7 @@
     <ClCompile Include="src\Astro\LayerStack.cpp" />
     <ClCompile Include="src\Astro\Log.cpp" />
     <ClCompile Include="src\Astro\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Astro\Renderer\Camera.cpp" />
     <ClCompile Include="src\Astro\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Astro\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Astro\Renderer\RendererAPI.cpp" />
@@ -612,6 +616,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />

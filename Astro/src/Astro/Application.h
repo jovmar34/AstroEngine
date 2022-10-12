@@ -12,6 +12,7 @@
 #include "Astro/Renderer/Shader.h"
 #include "Astro/Renderer/Buffer.h"
 #include "Renderer/VertexArray.h"
+#include "Renderer/Camera.h"
 
 namespace Astro {
 
@@ -40,11 +41,7 @@ namespace Astro {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_PositionShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
+		float m_LastFrameTime;
 	private:
 		static Application* s_Instance;
 	};
